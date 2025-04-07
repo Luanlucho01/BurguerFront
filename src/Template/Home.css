@@ -1,0 +1,204 @@
+/* Resetando margens e preenchimento */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Garantir que o body e html ocupem 100% da altura da tela */
+body, html {
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Estilo do fundo com a imagem */
+.background {
+
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+}
+
+/* Estilo para o texto */
+h1 {
+    font-size: 3rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Header */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: transparent;
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10; /* Garante que o header fique sobre o conteúdo */
+    transition: background-color 0.3s ease;
+}
+
+.header.scrolled {
+    background-color: black; /* Muda o fundo para preto quando rolar */
+}
+
+.header-left a, .header-right a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.2rem;
+    font-family: "Paytone One", sans-serif;
+    margin: 0 1rem;
+}
+
+.header-left a:hover, .header-right a:hover {
+    text-decoration: underline;
+}
+
+/* Logo no centro */
+.header-center {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.logo {
+    max-height: 50px;
+    width: auto;
+}
+
+/* Divider (Separador) */
+.divider {
+    height: 0px;
+    background-color: #f2f2f2;
+    margin: 0;
+}
+
+/* Seção do Cardápio */
+.menu-section {
+    background-image: url('../assets/bg2.png');
+    background-size: contain;
+    background-position: center;
+    background-color: #f8f8f8;
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+/* Título da seção do Cardápio */
+.menu-section h2 {
+    font-size: 2.5rem;
+    font-family: "Paytone One", sans-serif;
+    margin-bottom: 2rem;
+}
+
+/* Container dos itens do cardápio - Usando Grid */
+.menu-items {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    justify-items: center;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Card do menu */
+.menu-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    padding: 1.5rem;
+    width: 250px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.menu-card h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    font-family: "Paytone One", sans-serif;
+}
+
+.menu-card p {
+    font-size: 1.2rem;
+    font-family: "Paytone One", sans-serif;
+    margin-bottom: 1rem;
+}
+
+.menu-card span {
+    font-size: 1.5rem;
+    font-family: "Paytone One", sans-serif;
+    color: #f44336;
+}
+
+/* Efeito de hover nos cards */
+.menu-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos para o footer */
+.footer {
+    background-color: #000;
+    color: white;
+    padding: 4rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    padding-left: 9rem;
+    padding-right: 9rem;
+}
+
+.footer-item {
+    max-width: 200px;
+}
+
+.footer-item h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.footer-item p {
+    font-size: 1rem;
+    font-family: "Paytone One", sans-serif;
+    margin-bottom: 0.5rem;
+}
+
+.footer-item.local {
+    font-family: "Paytone One", sans-serif;
+    text-align: left;
+}
+
+.footer-item.contact, .footer-item.social {
+    font-family: "Paytone One", sans-serif;
+    text-align: center;
+}
+
+.footer-item a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.footer-item a:hover {
+    text-decoration: underline;
+}
