@@ -202,3 +202,59 @@ h1 {
 .footer-item a:hover {
     text-decoration: underline;
 }
+
+/* Estilizando o botão de logout */
+.logout-btn {
+    background-color: #ff3b30; /* Vermelho para indicar ação de saída */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    font-family: "Paytone One", sans-serif;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Ícone de logout */
+.logout-btn::before {
+    content: "🚪"; /* Ícone de porta de saída */
+    font-size: 1.5rem;
+}
+
+/* Hover para indicar interação */
+.logout-btn:hover {
+    background-color: #d32f2f;
+    transform: scale(1.05);
+}
+
+/* Ajuste de espaçamento na navbar */
+.header-right .logout-btn {
+    margin-left: 1rem;
+}
+
+/* Container para Logout + Email */
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Espaçamento entre email e botão */
+}
+
+/* Estilo do email do usuário */
+.user-email {
+    font-size: 1.2rem;
+    font-family: "Paytone One", sans-serif;
+    font-weight: bold;
+    color: white;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 8px 12px;
+    border-radius: 8px;
+}
+
+/* Ajuste de espaçamento na navbar */
+.header-right .logout-btn {
+    margin-left: 0;
+}

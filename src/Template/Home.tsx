@@ -3,52 +3,53 @@ import './Home.css'; // Certifique-se de que o caminho está correto
 import { Link } from 'react-router-dom';
 import fundoImage from '../assets/burger2.png'
 import logo from '../assets/burgerlogo.png'; // Substitua pelo caminho da sua logo
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import Header from '../components/Header';
+
+interface userData {
+  email: string;
+}
 
 const Home: React.FC = () => {
-  const [scrolling, setScrolling] = useState(false);
-
-  // Monitorar o evento de rolagem
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setScrolling(true); // Ativa o efeito quando rolar mais de 50px
-      } else {
-        setScrolling(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
+  const isLoggedIn=JSON.parse(localStorage.getItem("keepLoggedIn") || "false");
+  const [ userData, setUserdata ] = useState<userData | null>(null);
 
   useEffect(() => {
     fetchUserDetails();
   }, []);
   const fetchUserDetails = async () => {
     try {
-      const token = sessionStorage
-    } catch (error) {
-      
+      const token = sessionStorage.getItem("authToken");
+      const response = await axios.get(
+        "http://localhost:8080/api/auth/getUserData",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log(response);
+      if(response.data.success){
+        console.log(response.data);
+        setUserdata(response.data.data);
+      } else {
+        console.log(response.data.message || "Erro ao pegar a informação do usuário.")
+      }
+    } catch (err) {
+      if (axios.isAxiosError(err)) {
+        console.error("Erro durante o login", err);
+        console.log(err.response?.data?.message || "Erro desconhecido");
+      } else {
+        console.error("Erro inesperado", err);
+        toast.error("Erro desconhecido");
+      }
     }
   }
 
   return (
     <>
-      {/* Header com a logo e links */}
-      <header className={`header ${scrolling ? 'scrolled' : ''}`}>
-        <div className="header-left">
-          <a href="#menu">Cardápio</a>
-          <a href="#contact">Contato</a>
-        </div>
-        <div className="header-center">
-          <img src={logo} alt="Logo" className="logo" />
-        </div>
-        <div className="header-right">
-          <Link to="/login">Login</Link>
-        </div>
-      </header>
+      <Header userData={userData} />
 
       {/* Restante do conteúdo */}
       <div className="background" style={{ backgroundImage: `url(${fundoImage})` }}>
