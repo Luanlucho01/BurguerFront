@@ -20,8 +20,6 @@ function App() {
           <Route path='/cadastro' element={<Cadastro />} />
           <Route path='/crud' element={<Crud />} />
           <Route path='/header' element={<Header scrolling={true} />} />
-          <Route path='/cardapio' element={<Home />} />
-          <Route path='/contato' element={<Home />} />
         </Routes>
         <ToastContainer
           position='top-center'
