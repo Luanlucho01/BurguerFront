@@ -36,38 +36,6 @@ h1 {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-/* Header */
-.header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    background-color: transparent;
-    color: white;
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 10; /* Garante que o header fique sobre o conteúdo */
-    transition: background-color 0.3s ease;
-}
-
-.header.scrolled {
-    background-color: black; /* Muda o fundo para preto quando rolar */
-}
-
-.header-left a, .header-right a {
-    text-decoration: none;
-    color: white;
-    font-size: 1.2rem;
-    font-family: "Paytone One", sans-serif;
-    margin: 0 1rem;
-}
-
-.header-left a:hover, .header-right a:hover {
-    text-decoration: underline;
-}
-
 /* Logo no centro */
 .header-center {
     flex-grow: 1;
@@ -203,39 +171,6 @@ h1 {
     text-decoration: underline;
 }
 
-/* Estilizando o botão de logout */
-.logout-btn {
-    background-color: #ff3b30; /* Vermelho para indicar ação de saída */
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 1.2rem;
-    font-family: "Paytone One", sans-serif;
-    cursor: pointer;
-    border-radius: 8px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-/* Ícone de logout */
-.logout-btn::before {
-    content: "🚪"; /* Ícone de porta de saída */
-    font-size: 1.5rem;
-}
-
-/* Hover para indicar interação */
-.logout-btn:hover {
-    background-color: #d32f2f;
-    transform: scale(1.05);
-}
-
-/* Ajuste de espaçamento na navbar */
-.header-right .logout-btn {
-    margin-left: 1rem;
-}
-
 /* Container para Logout + Email */
 .user-info {
     display: flex;
@@ -252,9 +187,4 @@ h1 {
     background-color: rgba(255, 255, 255, 0.1);
     padding: 8px 12px;
     border-radius: 8px;
-}
-
-/* Ajuste de espaçamento na navbar */
-.header-right .logout-btn {
-    margin-left: 0;
 }

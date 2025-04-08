@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './Cadastro.css'; // Não se esqueça de criar o arquivo CSS
 import axios from 'axios';
 import { toast } from "react-toastify";
@@ -97,6 +98,9 @@ const Cadastro: React.FC = () => {
           </div>
           <button type="submit" className="cadastro-btn">Cadastrar</button>
           </form>
+          <p className="signup-link">
+            Ja possui uma conta? <Link to={"/Login"}>Entre aqui!</Link>
+          </p>
       </div>
     </div>
     </>

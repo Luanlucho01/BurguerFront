@@ -1,7 +1,7 @@
 // Header.tsx
 import React from "react";
 import { Link } from "react-router-dom";
-import '../Template/Home.css';
+import './Headers.css';
 import logo from '../assets/burgerlogo.png';
 import { useAuth } from "../Autenticação/AuthContext";
 
@@ -19,8 +19,18 @@ const Header: React.FC<HeaderProps> = ({ scrolling }) => {
   return (
     <header className={`header ${scrolling ? 'scrolled' : ''}`}>
       <div className="header-left">
-        <a href="#menu">Cardápio</a>
-        <a href="#contact">Contato</a>
+        {user ? (
+            <>
+            <a href="/">Cardápio</a>
+            <a href="/">Contato</a>
+            <a href="..\crud">Crud</a>
+            </>
+        ) : (
+          <>
+            <a href="/">Cardápio</a>
+            <a href="/">Contato</a>
+          </>
+        )}
         <span>
           Email: {loading ? "Carregando" : (user ? user.email : "Não logado")}
         </span>

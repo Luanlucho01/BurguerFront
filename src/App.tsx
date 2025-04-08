@@ -6,6 +6,8 @@ import Login from './Login/Login'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Cadastro from './Cadastro/Cadastro';
 import { AuthProvider } from './Autenticação/AuthContext';
+import Header from './components/Headers';
+import Crud from './CRUD/Crud';
 
 function App() {
   return (
@@ -16,6 +18,10 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/login' element={<Login />} />
           <Route path='/cadastro' element={<Cadastro />} />
+          <Route path='/crud' element={<Crud />} />
+          <Route path='/header' element={<Header scrolling={true} />} />
+          <Route path='/cardapio' element={<Home />} />
+          <Route path='/contato' element={<Home />} />
         </Routes>
         <ToastContainer
           position='top-center'
