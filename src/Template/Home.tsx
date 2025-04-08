@@ -3,9 +3,15 @@ import './Home.css'; // Certifique-se de que o caminho está correto
 import { Link } from 'react-router-dom';
 import fundoImage from '../assets/burger2.png'
 import logo from '../assets/burgerlogo.png'; // Substitua pelo caminho da sua logo
+import axios from 'axios';
+
+interface UserData {
+  email: string;
+}
 
 const Home: React.FC = () => {
   const [scrolling, setScrolling] = useState(false);
+  const [userData, setUserData ] = useState<UserData | null>(null);
 
   // Monitorar o evento de rolagem
   useEffect(() => {
@@ -28,9 +34,26 @@ const Home: React.FC = () => {
   }, []);
   const fetchUserDetails = async () => {
     try {
-      const token = sessionStorage
-    } catch (error) {
-      
+      const token = sessionStorage.getItem("authToken");
+      const response = await axios.get(
+        "http://localhost:8080/api/auth/getUserData",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log(response);
+      if (response.data.success) {
+        console.log(response.data);
+        setUserData({
+          email: response.data.user.email,
+        });
+      } else {
+        console.log(response.data.message || "Erro ao pegar informações do usuário")
+      }
+    } catch (err) {
+      console.error("Erro ao pegar informações do usuário:", err);
     }
   }
 
@@ -41,6 +64,7 @@ const Home: React.FC = () => {
         <div className="header-left">
           <a href="#menu">Cardápio</a>
           <a href="#contact">Contato</a>
+          <span>Email: { userData ? userData.email : "Carregando" }</span>
         </div>
         <div className="header-center">
           <img src={logo} alt="Logo" className="logo" />
