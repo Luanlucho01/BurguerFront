@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './Cadastro.css'; // Não se esqueça de criar o arquivo CSS
 import axios from 'axios';
 import { toast } from "react-toastify";
-import Header from '../components/Header';
+import Header from '../components/Headers';
 
 const Cadastro: React.FC = () => {
   const [formValues, setFormValues]=useState({
@@ -67,7 +67,7 @@ const Cadastro: React.FC = () => {
 
   return (
     <>
-    <Header userData={null} />
+    <Header scrolling={true}/>
 
     <div className="cadastro-container">
       <div className="cadastro-box">

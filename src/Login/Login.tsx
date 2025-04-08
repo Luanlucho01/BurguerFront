@@ -3,12 +3,19 @@ import { Link, useNavigate } from 'react-router-dom';
 import './Login.css';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import Header from '../components/Header'; // Importando o Header
+import Header from '../components/Headers';
+import { useAuth } from '../Autenticação/AuthContext';
+
+interface HeaderProps {
+  scrolling?: boolean;
+  email?: string | null;
+}
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const navigate = useNavigate();
+  const { setToken } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -19,9 +26,9 @@ const Login: React.FC = () => {
 
       if (response.data.success) {
         toast.success(response.data.message || 'Logado com sucesso');
-        const token = response.data.token;
-        localStorage.setItem("authToken", token);
-        localStorage.setItem("keepLoggedIn",JSON.stringify(true));
+        const tokenReceived = response.data.token;
+        localStorage.setItem("authToken", tokenReceived);
+        setToken(tokenReceived);
         navigate("/");
       } else {
         toast.error(response.data.message || "Erro ao logar");
@@ -37,7 +44,8 @@ const Login: React.FC = () => {
 
   return (
     <>
-      <Header userData={null} /> {/* Adicionando o Header à página */}
+      <Header scrolling={true}/>
+
       <div className="login-container">
         <div className="login-box">
           <h2>Login</h2>

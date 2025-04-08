@@ -2,16 +2,12 @@ import React, { useState, useEffect } from 'react';
 import './Home.css'; // Certifique-se de que o caminho está correto
 import { Link } from 'react-router-dom';
 import fundoImage from '../assets/burger2.png'
-import logo from '../assets/burgerlogo.png'; // Substitua pelo caminho da sua logo
-import axios from 'axios';
-
-interface UserData {
-  email: string;
-}
+import Header from '../components/Headers';
+import { useAuth } from '../Autenticação/AuthContext';
 
 const Home: React.FC = () => {
   const [scrolling, setScrolling] = useState(false);
-  const [userData, setUserData ] = useState<UserData | null>(null);
+  const { user, loading } = useAuth();
 
   // Monitorar o evento de rolagem
   useEffect(() => {
@@ -29,55 +25,26 @@ const Home: React.FC = () => {
     };
   }, []);
 
-  useEffect(() => {
-    fetchUserDetails();
-  }, []);
-  const fetchUserDetails = async () => {
-    try {
-      const token = sessionStorage.getItem("authToken");
-      const response = await axios.get(
-        "http://localhost:8080/api/auth/getUserData",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      console.log(response);
-      if (response.data.success) {
-        console.log(response.data);
-        setUserData({
-          email: response.data.user.email,
-        });
-      } else {
-        console.log(response.data.message || "Erro ao pegar informações do usuário")
-      }
-    } catch (err) {
-      console.error("Erro ao pegar informações do usuário:", err);
-    }
-  }
-
   return (
     <>
-      {/* Header com a logo e links */}
-      <header className={`header ${scrolling ? 'scrolled' : ''}`}>
-        <div className="header-left">
-          <a href="#menu">Cardápio</a>
-          <a href="#contact">Contato</a>
-          <span>Email: { userData ? userData.email : "Carregando" }</span>
-        </div>
-        <div className="header-center">
-          <img src={logo} alt="Logo" className="logo" />
-        </div>
-        <div className="header-right">
-          <Link to="/login">Login</Link>
-        </div>
-      </header>
+       <Header scrolling={scrolling} />
 
       {/* Restante do conteúdo */}
       <div className="background" style={{ backgroundImage: `url(${fundoImage})` }}>
         <h1>Lanches como você nunca viu</h1>
       </div>
+
+      {/* Testando a Autenticação Global na página home 
+      <div className="user-greeting" style={{ padding: "1rem", textAlign: "center" }}>
+        {loading ? (
+          <p>Carregando informações do usuário...</p>
+        ) : user ? (
+          <p>Bem-vindo, {user.email}!</p>
+        ) : (
+          <p>Olá, visitante! Faça login para ver uma experiência personalizada.</p>
+        )}
+      </div> */}
+
 
       <div className="divider"></div>
 
@@ -109,6 +76,28 @@ const Home: React.FC = () => {
           </div>
         </div>
       </div>
+
+      <div className="divider"></div>
+
+        
+      {/*  
+      Exemplo de lugar onde o usuário só pode acessar se ele estiver logado.
+      <div className="exclusive-section" style={{ padding: '2rem', textAlign: 'center' }}>
+        {user ? (
+          <>
+            <h2>Área Exclusiva</h2>
+            <p>Bem-vindo à área exclusiva, {user.email}!</p>
+            <p>Aqui você encontra ofertas e conteúdos especiais somente para usuários logados.</p>
+            <Link to="/exclusiva" className="btn">Acessar Área Exclusiva</Link>
+          </>
+        ) : (
+          <>
+            <h2>Área Exclusiva</h2>
+            <p>Você precisa estar logado para acessar esta área.</p>
+            <Link to="/login" className="btn">Faça Login</Link>
+          </>
+        )}
+      </div> */}
 
       <div className="divider"></div>
 
