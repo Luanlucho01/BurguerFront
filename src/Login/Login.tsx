@@ -1,38 +1,43 @@
-import React, { useState } from 'react';
+import React, { FormEvent, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Login.css';
 import { toast } from 'react-toastify';
 import Header from '../components/Headers';
 import { useAuth } from '../Autenticação/AuthContext';
+import axios from 'axios';
+
+interface HeaderProps {
+  scrolling?: boolean;
+  email?: string | null;
+}
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const navigate = useNavigate();
   const { setToken } = useAuth();
-
-  const handleSubmit = (e: React.FormEvent) => {
+  
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Buscar os usuários cadastrados no localStorage
-    const usuariosSalvos = JSON.parse(localStorage.getItem("usuarios") || "[]");
-
-    // Verificar se existe um usuário com esse e-mail e senha
-    const usuarioEncontrado = usuariosSalvos.find(
-      (user: any) => user.email === email && user.senha === senha
-    );
-
-    if (usuarioEncontrado) {
-      toast.success("Login realizado com sucesso!");
-      const fakeToken = "token123"; // token simulado
-      localStorage.setItem("authToken", fakeToken);
-      setToken(fakeToken);
-      navigate("/");
-    } else {
-      toast.error("E-mail ou senha incorretos.");
-    }
-  };
-
+    try {
+      const response = await axios.post("http://localhost:8080/api/auth/login-user", { email, senha });
+      if (response.data.success) {
+        toast.success(response.data.message || 'Logado com sucesso');
+        const tokenReceived = response.data.token;
+        localStorage.setItem("authToken", tokenReceived);
+        setToken(tokenReceived);
+        navigate("/");
+      } else {
+        toast.error(response.data.message || "Erro ao logar");
+      }
+      } catch (error) {
+      if (axios.isAxiosError(error)) {
+        toast.error(error.response?.data?.message || "Erro desconhecido");
+      } else {
+        toast.error("Erro inesperado");
+      }
+      }}
   return (
     <>
       <Header scrolling={true} />
@@ -52,7 +57,7 @@ const Login: React.FC = () => {
               />
             </div>
             <div className="input-group">
-              <label htmlFor="senha">Senha</label>
+              <label htmlFor="password">Senha</label>
               <input
                 type="password"
                 name="senha"

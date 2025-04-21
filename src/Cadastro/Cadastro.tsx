@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './Cadastro.css';
 import { toast } from "react-toastify";
 import Header from '../components/Headers';
+import axios from 'axios';
 
 const Cadastro: React.FC = () => {
   const [formValues, setFormValues] = useState({
@@ -33,37 +34,29 @@ const Cadastro: React.FC = () => {
     return errors;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const validationErrors = validateForm();
-    setErrors(validationErrors);
+    const errors=(formValues)
+    try {
+      const response = await axios.post("http://localhost:8080/api/auth/register-user",formValues);
+      console.log(response, 'res');
 
-    if (Object.keys(validationErrors).length > 0) return;
-
-    // Criar um novo usuário com ID único
-    const novoUsuario = {
-      id: Date.now(),
-      ...formValues
-    };
-
-    // Obter usuários já salvos
-    const usuariosSalvos = JSON.parse(localStorage.getItem("usuarios") || "[]");
-
-    // Verificar se o e-mail já existe
-    const emailExistente = usuariosSalvos.find((user: any) => user.email === formValues.email);
-    if (emailExistente) {
-      toast.error("Este e-mail já está cadastrado.");
-      return;
+      if (response.data.success) {
+        toast.success(response.data.message || 'Registration succesfull!');
+        setFormValues({email:"",senha:""});
+      } else {
+        toast.error(response.data.message || "Erro ao registrar");
+      }
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        console.error("Erro durante o registro", error);
+        toast.error(error.response?.data?.message || "Erro desconhecido");
+      } else {
+        console.error("Erro inesperado", error);
+        toast.error("Erro desconhecido");
+      }
     }
-
-    // Adicionar e salvar no localStorage
-    usuariosSalvos.push(novoUsuario);
-    localStorage.setItem("usuarios", JSON.stringify(usuariosSalvos));
-
-    toast.success("Usuário cadastrado com sucesso!");
-
-    setFormValues({ email: "", senha: "" });
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -72,6 +65,7 @@ const Cadastro: React.FC = () => {
       ...prevValues,
       [name]: value
     }));
+    console.log(formValues);
   };
 
   return (
