@@ -23,12 +23,12 @@ const Header: React.FC<HeaderProps> = ({ scrolling }) => {
             <>
             <a href="/">Cardápio</a>
             <a href="/">Contato</a>
-            <a href="..\crud">Crud</a>
             </>
         ) : (
           <>
             <a href="/">Cardápio</a>
             <a href="/">Contato</a>
+            <a href="/crud">Crud</a>
           </>
         )}
         <span>

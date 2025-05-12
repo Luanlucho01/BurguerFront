@@ -7,7 +7,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Cadastro from './Cadastro/Cadastro';
 import { AuthProvider } from './Autenticação/AuthContext';
 import Header from './components/Headers';
-import Crud from './CRUD/Crud';
+import Crud from './CRUD/crud2';
+
 
 function App() {
   return (
