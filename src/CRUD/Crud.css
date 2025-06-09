@@ -1,7 +1,98 @@
-.background {
-    text-align: center;
-}
+* {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
 
-.background a {
-    color: black;
-}
+    body {
+      background: linear-gradient(135deg, #0d1b2a, #1b263b);
+      color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background-color: #112b44;
+      padding: 25px 0;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    }
+
+    header h1 {
+      font-size: 2.8rem;
+      font-weight: bold;
+      color: #f8f9fa;
+      letter-spacing: 1.5px;
+      background: linear-gradient(to right, #58a6ff, #9ecbff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 6px rgba(88, 166, 255, 0.4);
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 40px 20px;
+    }
+
+    .crud-container {
+      background-color: #1e2f45;
+      padding: 30px;
+      border-radius: 16px;
+      width: 100%;
+      max-width: 850px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      transition: transform 0.2s ease-in-out;
+      border: 1px solid #2e4b6b;
+    }
+
+    .crud-container:hover {
+      transform: scale(1.01);
+    }
+
+    .crud-container h2 {
+      margin-bottom: 25px;
+      text-align: center;
+      font-size: 1.9rem;
+      color: #d9e3f0;
+      text-shadow: 0 0 4px rgba(217, 227, 240, 0.2);
+      position: relative;
+    }
+
+    .crud-container h2::before {
+      content: '🛠️';
+      position: absolute;
+      left: -30px;
+      top: 3px;
+      font-size: 1.4rem;
+      opacity: 0.6;
+    }
+
+    /* Espaço reservado para os botões ou formulários */
+    .crud-actions {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .crud-btn {
+      background-color: #2a4a72;
+      color: #ffffff;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s;
+      box-shadow: 0 0 8px rgba(88, 166, 255, 0.3);
+    }
+
+    .crud-btn:hover {
+      background-color: #3b6ea5;
+      transform: scale(1.05);
+    }

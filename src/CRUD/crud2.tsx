@@ -1,41 +1,26 @@
-import React from "react"
+import React from "react";
+import './Crud.css';
+import Header from '../components/Headers';
 
 const Crud: React.FC = () => {
 
     return (
         <>
-            <html>
-            <body className="container py-5">
-            <h1 className="mb-4">Gerenciar Usuários</h1>
+            <Header scrolling={true} />
 
-            <form id="user-form" className="mb-4">
-                <input type="hidden" id="editIndex"/>
-                <div className="mb-3">
-                <label className="form-label">Nome</label>
-                <input type="text" id="nome" className="form-control" required/>
+            <main>
+                <div className="crud-container">
+                <h2>Área de Gerenciamento</h2>
+
+                
+                <div className="crud-actions">
+                    <button className="crud-btn">Adicionar</button>
+                    <button className="crud-btn">Editar</button>
+                    <button className="crud-btn">Excluir</button>
                 </div>
-                <div className="mb-3">
-                <label className="form-label">Email</label>
-                <input type="email" id="email" className="form-control" required/>
                 </div>
-                <button type="submit" className="btn btn-primary">Salvar</button>
-                <button type="button" id="cancelar" className="btn btn-secondary d-none">Cancelar</button>
-            </form>
-
-            <table className="table table-bordered" id="user-table">
-                <thead>
-                <tr>
-                    <th>Nome</th>
-                    <th>Email</th>
-                    <th>Ações</th>
-                </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-            </body>
-        </html>
-
-        
+            </main>
+            
         </>
     );
 };
