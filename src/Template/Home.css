@@ -17,23 +17,83 @@ body {
     flex-direction: column;
 }
 
-/* Estilo do fundo com a imagem */
 .background {
+  position: relative;
+  background-color: #000;
+  background-image: url('../assets/Ingredientes.png');
+   background-size: 1200px auto;
+  background-position: center;
+  background-repeat: no-repeat;
 
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    text-align: center;
+  height: 600px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  overflow: hidden;
 }
 
-/* Estilo para o texto */
-h1 {
-    font-size: 3rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+
+.title-hamburguer {
+  position: absolute;
+  top: 40%;
+  right: 45%; 
+  transform: translateY(-160%);
+  font-size: 3rem;
+  font-weight: bold;
+  font-style: italic;
+  text-transform: uppercase;
+  color: white;
+  letter-spacing: 2px;
+  z-index: 3;
+  
+
+    text-shadow:
+    1px 1px 0 #999,
+    2px 2px 0 #888,
+    3px 3px 0 #777,
+    4px 4px 0 #666,
+    5px 5px 10px rgba(0, 0, 0, 0.7);
+}
+
+.hamburguer {
+  width: 520px;
+  position: relative;
+  z-index: 2;
+  object-fit: contain;
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.subtitle-hamburguer2 {
+  position: absolute;
+  top: 59%; 
+  right: 21%;
+  transform: translateY(120%);
+  font-size: 3rem;
+  letter-spacing: 2px;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-style: italic;
+  color: white;
+  z-index: 1;
+  
+
+    text-shadow:
+    1px 1px 0 #666,
+    2px 2px 0 #555,
+    3px 3px 0 #444,
+    4px 4px 0 #333,
+    5px 5px 10px rgba(0, 0, 0, 0.6);
 }
 
 /* Logo no centro */
@@ -57,10 +117,9 @@ h1 {
 
 /* Seção do Cardápio */
 .menu-section {
-    background-image: url('../assets/bg2.png');
     background-size: contain;
     background-position: center;
-    background-color: #f8f8f8;
+    background-color: #000000;
     padding: 4rem 2rem;
     text-align: center;
 }
@@ -91,6 +150,7 @@ h1 {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     padding: 1.5rem;
     width: 250px;
+    color: #000;
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }

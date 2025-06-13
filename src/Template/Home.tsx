@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Home.css'; // Certifique-se de que o caminho está correto
 import { Link } from 'react-router-dom';
-import fundoImage from '../assets/burger2.png'
+import HamburguerImage from '../assets/hamburguer react.png'
 import Header from '../components/Headers';
 import { useAuth } from '../Autenticação/AuthContext';
 
@@ -30,8 +30,10 @@ const Home: React.FC = () => {
        <Header scrolling={scrolling} />
 
       {/* Restante do conteúdo */}
-      <div className="background" style={{ backgroundImage: `url(${fundoImage})` }}>
-        <h1>Lanches como você nunca viu</h1>
+      <div className="background">
+        <h2 className='title-hamburguer'>Lanches como você</h2>
+        <img src={HamburguerImage} alt="" className='hamburguer'/>
+        <h3 className='subtitle-hamburguer2'>nunca viu!</h3>
       </div>
 
       {/* Testando a Autenticação Global na página home 
