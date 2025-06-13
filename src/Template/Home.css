@@ -35,6 +35,18 @@ body {
 }
 
 
+.background::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 150px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, #000 100%);
+  z-index: 1;
+}
+
+
 .title-hamburguer {
   position: absolute;
   top: 40%;
@@ -108,76 +120,74 @@ body {
     width: auto;
 }
 
-/* Divider (Separador) */
-.divider {
-    height: 0px;
-    background-color: #f2f2f2;
-    margin: 0;
-}
-
-/* Seção do Cardápio */
 .menu-section {
-    background-size: contain;
-    background-position: center;
-    background-color: #000000;
-    padding: 4rem 2rem;
-    text-align: center;
+  background-color: #000000;
+  padding: 5rem 2rem;
+  color: #fff;
+  text-align: center;
+  background-size: cover;
+  background-position: center;
+  position: relative;
 }
 
-/* Título da seção do Cardápio */
-.menu-section h2 {
-    font-size: 2.5rem;
-    font-family: "Paytone One", sans-serif;
-    margin-bottom: 2rem;
+.menu-title {
+  font-size: 3rem;
+  font-family: 'Paytone One', sans-serif;
+  margin-bottom: 2.6rem;
+  color: #ffffff;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+  letter-spacing: 1px;
 }
 
-/* Container dos itens do cardápio - Usando Grid */
 .menu-items {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-    justify-items: center;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-/* Card do menu */
 .menu-card {
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    padding: 1.5rem;
-    width: 250px;
-    color: #000;
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: linear-gradient(145deg, #232323, #1a1a1a);
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid #333;
+}
+
+.menu-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
 }
 
 .menu-card h3 {
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
-    font-family: "Paytone One", sans-serif;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  font-family: 'Paytone One', sans-serif;
+  color: #f44336;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .menu-card p {
-    font-size: 1.2rem;
-    font-family: "Paytone One", sans-serif;
-    margin-bottom: 1rem;
+  font-size: 1rem;
+  color: #ccc;
+  margin-bottom: 1rem;
+  font-family: 'Arial', sans-serif;
 }
 
 .menu-card span {
-    font-size: 1.5rem;
-    font-family: "Paytone One", sans-serif;
-    color: #f44336;
+  font-size: 1.6rem;
+  color: #f8d53a;
+  font-weight: bold;
+  font-family: 'Paytone One', sans-serif;
+  border-top: 1px dashed #555;
+  display: block;
+  padding-top: 1rem;
 }
 
-/* Efeito de hover nos cards */
-.menu-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
 
 /* Estilos para o footer */
 .footer {

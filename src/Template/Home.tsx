@@ -36,22 +36,9 @@ const Home: React.FC = () => {
         <h3 className='subtitle-hamburguer2'>nunca viu!</h3>
       </div>
 
-      {/* Testando a Autenticação Global na página home 
-      <div className="user-greeting" style={{ padding: "1rem", textAlign: "center" }}>
-        {loading ? (
-          <p>Carregando informações do usuário...</p>
-        ) : user ? (
-          <p>Bem-vindo, {user.email}!</p>
-        ) : (
-          <p>Olá, visitante! Faça login para ver uma experiência personalizada.</p>
-        )}
-      </div> */}
-
-
-      <div className="divider"></div>
 
       <div className="menu-section" id='menu'>
-        <h2>Nosso Cardápio</h2>
+        <h2 className="menu-title">Nosso Cardápio</h2>
         <div className="menu-items">
           <div className="menu-card">
             <h3>Hamburguer Clássico</h3>
@@ -61,7 +48,7 @@ const Home: React.FC = () => {
 
           <div className="menu-card">
             <h3>Hamburguer Vegano</h3>
-            <p>Proteina de soja, alface, tomate e molho vegano</p>
+            <p>Proteína de soja, alface, tomate e molho vegano</p>
             <span>R$ 22,90</span>
           </div>
 
